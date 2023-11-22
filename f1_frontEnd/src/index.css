@@ -1,3 +1,33 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --primary-color: ##ff697d;
+  }
+
+  body {
+    color: #fefefe;
+    font-family: "Playpen Sans", cursive;
+  }
+
+  .loginForm {
+    background: rgba(92, 77, 77, 0.123);
+    box-shadow: 0 8px 32px 0 rgba(228, 66, 66, 0.37);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  #loginPage {
+    background-image: url("./src/assets/bgImages/f1Logo.png");
+  }
+
+  @media (min-width: 768px) {
+    #loginPage {
+      background-image: url("./src/assets/bgImages/black.jpeg");
+    }
+  }
+}

@@ -7,6 +7,10 @@
     --primary-color: ##ff697d;
   }
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     color: #fefefe;
     font-family: "Playpen Sans", cursive;
@@ -22,12 +26,6 @@
   }
 
   #loginPage {
-    background-image: url("./src/assets/bgImages/f1Logo.png");
-  }
-
-  @media (min-width: 768px) {
-    #loginPage {
-      background-image: url("./src/assets/bgImages/black.jpeg");
-    }
+    background-image: url("./src/assets/bgImages/black.jpeg");
   }
 }

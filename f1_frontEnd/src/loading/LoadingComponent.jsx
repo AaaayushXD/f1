@@ -19,7 +19,7 @@ export const PacManLoader = (props) => {
 
 export const Loader = (props) => {
   return (
-    <div className="w-full h-[100vh] bg-[#272727] flex items-center justify-center">
+    <div className="w-full h-[100%] bg-[#272727] flex items-center justify-center">
       <GridLoader
         color="#d63636"
         loading={props.loading}
@@ -33,15 +33,14 @@ export const Loader = (props) => {
 
 export const Pulse = (props) => {
   return (
-      <div className="w-full h-[100vh] bg-[#272727] flex items-center justify-center">
+    <div className="w-full h-[full] flex items-center justify-center">
       <PulseLoader
         color="#d63636"
         loading={props.loading}
-        size={20}
+        size={10}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
-      </div>
+    </div>
   );
 };
-

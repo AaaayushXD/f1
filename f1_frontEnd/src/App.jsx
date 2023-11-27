@@ -5,9 +5,11 @@ import { Provider } from "react-redux";
 import { store } from "./state/store";
 import Register from "./auth/Register";
 import "react-toastify/dist/ReactToastify.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./firebase/Auth";
 import Home from "./Components/Home.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -28,6 +30,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<Home />} />
+              {/* <Route element={<PrivateRoute />}> */}
+              {/* </Route> */}
             </Routes>
           </AuthProvider>
         </Router>

@@ -4,9 +4,9 @@ import {
   selectLoading,
   activateLoading,
   deactivateLoading,
-} from "../functions/LoadingSlice";
+} from "../reducers/LoadingSlice.jsx";
 import { useAuth } from "../firebase/Auth.jsx";
-import { Pulse } from "../loading/LoadingComponent";
+import { Loader, PacManLoader, Pulse } from "../loading/LoadingComponent";
 import { toast } from "react-toastify";
 import IMG from "../assets/bgImages/f1_img2.jpg";
 import { Link, useNavigate } from "react-router-dom";
@@ -60,7 +60,6 @@ export const LogInForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(activateLoading());
     try {
       await loginWithEmail(email, password);
       navigate("/");
@@ -68,7 +67,6 @@ export const LogInForm = () => {
       console.log(e);
       toast.error("Login Failed", toastStyle);
     }
-    dispatch(deactivateLoading());
   };
 
   return (
@@ -148,7 +146,6 @@ export const SignUpForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(activateLoading());
     try {
       await signUpWithEmail(email, password);
       navigate("/");
@@ -157,11 +154,12 @@ export const SignUpForm = () => {
 
       console.log(e);
     }
-    dispatch(deactivateLoading());
   };
+
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col m-3 w-[full]">
+        {loading && <PacManLoader loading={true} />}
         {/* Email */}
         <div className="flex flex-col email ">
           <label htmlFor="email" className="p-2 mt-2 text-lg text-[#ff697d]">

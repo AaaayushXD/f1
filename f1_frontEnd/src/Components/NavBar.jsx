@@ -1,46 +1,111 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import F1LOGO from "../assets/F1-Logo.png";
-import { CircleUser, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { CircleUser, LogOut, Menu, Moon, UserRound, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../firebase/Auth";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  activateLoading,
+  deactivateLoading,
+  selectLoading,
+} from "../reducers/LoadingSlice";
 
 const NavBar = () => {
+  //* state
   const [menu, setMenu] = useState(false);
-  const currentUser = useAuth();
+  const [userIcon, setUserIcon] = useState(false);
+  const loading = useSelector(selectLoading);
 
-  const user = currentUser.currentUser?.email.split("@")[0];
+  //*
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //* current User and Logout function
+  const { logOut, currentUser } = useAuth();
+
+  //* get userName
+  const user = currentUser && currentUser.currentUser?.email.split("@")[0];
+
   const changeMenu = () => {
     setMenu((prev) => !prev);
   };
+
+  const showUserMenu = () => {
+    setUserIcon((prev) => !prev);
+  };
+
+  const userLogOut = async () => {
+    await logOut();
+    navigate("/login");
+  };
   return (
-    <nav className="w-[100%] h-[80px] bg-white p-2">
+    <nav className="w-[100%] h-[80px] p-2">
       {/* Desktop */}
-      <div className="hidden lg:flex w-[100%] h-[100%] px-4 text-[red] items-center justify-between">
+      <div className="hidden lg:flex w-[100%] h-[100%] px-4 items-center justify-between">
         {/* Logo */}
-        <img src={F1LOGO} alt="f1 logo" className="h-full" />
+        <Link to={"/"} className="h-[80px]">
+          <img src={F1LOGO} alt="f1 logo" className="h-full cursor-pointer" />
+        </Link>
         {/* Menu */}
         <div>
-          <ul className="flex items-center justify-center gap-5 text-2xl">
+          <ul className="flex items-center justify-center text-2xl">
             <Link to={"/"}>
-              <li className="">Home</li>
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+                Home
+              </li>
             </Link>
             <Link to={"/drivers"}>
-              <li className="">Drivers</li>
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+                Drivers
+              </li>
             </Link>
             <Link to={"/teams"}>
-              <li className="">Teams</li>
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+                Teams
+              </li>
             </Link>
             <Link to={"/schedules"}>
-              <li className="">Schedules</li>
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+                Schedules
+              </li>
             </Link>
             <Link to={"/circuits"}>
-              <li className="">Circuits</li>
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+                Circuits
+              </li>
             </Link>
           </ul>
         </div>
         {/* Account */}
-        <div>
-          <CircleUser color="red" size={50} />
+        <div className="relative cursor-pointer" onClick={showUserMenu}>
+          <CircleUser size={50} className="text-red-600 hover:text-red-800" />
+          {userIcon && (
+            <div
+              className="bg-[#d1d1d1] w-[200px] absolute top-[60px] right-0 h-[190px] rounded-lg "
+              style={{ zIndex: 50 }}
+            >
+              <ul className="flex flex-col w-full h-full">
+                <Link
+                  to={"/profile"}
+                  className="flex w-[100%] py-3 px-4 border-b-2 border-b-[#3e3e3e] text-[#3e3e3e] gap-4 items-center hover:bg-[#3e3e3e8f] hover:text-[#cecaca]"
+                >
+                  <UserRound size={35} />
+                  <li className="text-2xl ">Profile</li>
+                </Link>
+                <div className="flex w-[100%] py-3 px-4 border-b-2 border-b-[#3e3e3e] text-[#3e3e3e] gap-4 items-center hover:bg-[#3e3e3e8f] hover:text-[#cecaca]">
+                  <Moon size={35} />
+                  <li className="text-xl ">Dark</li>
+                </div>
+                <div
+                  className="flex w-[100%] py-3 px-4  text-[#3e3e3e] gap-4 items-center hover:bg-[#3e3e3e8f] hover:text-[#cecaca]"
+                  onClick={userLogOut}
+                >
+                  <LogOut size={35} />
+                  <li className="text-2xl ">Log Out</li>
+                </div>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 

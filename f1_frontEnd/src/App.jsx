@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./firebase/Auth";
 import Home from "./Components/Home.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
+import News from "./Components/News.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -30,6 +31,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<Home />} />
+              <Route path="/news" element={<News />} />
               {/* <Route element={<PrivateRoute />}> */}
               {/* </Route> */}
             </Routes>

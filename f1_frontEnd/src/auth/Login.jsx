@@ -9,7 +9,7 @@ import {
   activateLoading,
   deactivateLoading,
   selectLoading,
-} from "../functions/LoadingSlice.jsx";
+} from "../reducers/LoadingSlice.jsx";
 import { useAuth } from "../firebase/Auth.jsx";
 import { PacManLoader } from "../loading/LoadingComponent.jsx";
 import { useNavigate } from "react-router-dom";
@@ -33,14 +33,12 @@ const Login = () => {
   // *Google Sign In
   const googleSignIn = async () => {
     try {
-      dispatch(activateLoading());
       const user = await signInWithGoogle();
       navigate("/");
     } catch (e) {
       toast.error("Login Failed", toastStyle);
       console.log(e);
     }
-    dispatch(deactivateLoading());
   };
 
   // TODO: Facebook Sign IN
@@ -48,10 +46,6 @@ const Login = () => {
 
   // TODO: Apple Sign IN
   const appleSignIn = () => {};
-
-  useEffect(() => {
-    setTimeout(() => {}, 2000);
-  }, []);
 
   return (
     <div
@@ -110,7 +104,7 @@ const Login = () => {
         {/* Image */}
         <LogInImage />
       </div>
-      {loading && <PacManLoader loading={true} />}
+      {loading && <PacManLoader loading={loading} />}
     </div>
   );
 };

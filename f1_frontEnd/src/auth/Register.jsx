@@ -8,7 +8,7 @@ import {
   selectLoading,
   activateLoading,
   deactivateLoading,
-} from "../functions/LoadingSlice";
+} from "../reducers/LoadingSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../firebase/Auth";
 import { useNavigate } from "react-router-dom";
@@ -32,15 +32,12 @@ const Register = () => {
   // *Google Sign In
   const googleSignIn = async () => {
     try {
-      dispatch(activateLoading());
       await signInWithGoogle();
       navigate("/");
     } catch (e) {
       toast.error("Login Failed", toastStyle);
       console.log(e);
     }
-
-    dispatch(deactivateLoading());
   };
 
   // TODO: Facebook Sign IN

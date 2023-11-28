@@ -12,8 +12,7 @@ import {
   activateLoading,
   deactivateLoading,
   selectLoading,
-} from "../functions/LoadingSlice";
-import { PacManLoader } from "../loading/LoadingComponent";
+} from "../reducers/LoadingSlice";
 import { useState } from "react";
 
 const AuthContext = createContext();
@@ -40,10 +39,8 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    dispatch(activateLoading());
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-      dispatch(deactivateLoading());
     });
     return unsubscribe;
   }, []);

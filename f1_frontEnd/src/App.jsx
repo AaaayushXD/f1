@@ -11,6 +11,7 @@ import { AuthProvider } from "./firebase/Auth";
 import Home from "./Components/Home.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
 import News from "./Components/News.jsx";
+import Drivers from "./Components/Drivers.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -32,6 +33,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<Home />} />
               <Route path="/news" element={<News />} />
+              <Route path="/drivers" element={<Drivers />} />
               {/* <Route element={<PrivateRoute />}> */}
               {/* </Route> */}
             </Routes>

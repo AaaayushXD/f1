@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "autoprefixer": "^10.4.16",
     "firebase": "^10.6.0",
+    "firebase-admin": "^11.11.1",
     "lucide": "^0.293.0",
     "lucide-react": "^0.293.0",
     "postcss": "^8.4.31",

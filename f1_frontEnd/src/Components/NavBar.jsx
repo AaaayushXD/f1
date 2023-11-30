@@ -111,10 +111,12 @@ const NavBar = () => {
 
       {/* Mobile */}
 
-      <div className="w-[100%] h-[100%] bg-black  px-4 relative lg:hidden">
+      <div className="w-[100%] h-[100%]  px-4 relative lg:hidden">
         {/* Logo */}
         <div className="flex items-center justify-between w-full h-full ">
-          <img src={F1LOGO} alt="f1 logo" className="h-full" />
+          <Link className="w-full h-[80px]" to={"/"}>
+            <img src={F1LOGO} alt="f1 logo" className="h-full" />
+          </Link>
           {/* Menu */}
           <div
             onClick={changeMenu}

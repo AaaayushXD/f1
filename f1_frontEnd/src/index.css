@@ -14,7 +14,8 @@
   body {
     color: #fefefe;
     font-family: "Playpen Sans", cursive;
-    background-color: rgb(29, 28, 28);
+    /* background-color: rgb(29, 28, 28); */
+     background-image: url("./src/assets/bgImages/black.jpeg");
 
   }
 

@@ -3,7 +3,7 @@ import { CarFront, Users } from "lucide-react";
 
 const About = () => {
   return (
-    <div className="w-full h-full bg-[#38343473] rounded-md text-[#d6d6d6] mb-6 sm:ml-4">
+    <div className="w-full h-full bg-[#38343473] rounded-md text-[#d6d6d6] mb-6 md:mx-4 px-1">
       <div className="px-3 py-2">
         <h1 className="text-[40px] text-[#d43333] sm:text-6xl ">About</h1>
       </div>

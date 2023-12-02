@@ -13,6 +13,10 @@ import PrivateRoute from "./routes/PrivateRoute.jsx";
 import News from "./Components/News.jsx";
 import DriverStandings, { PodiumWinners } from "./Components/Drivers.jsx";
 import { PersistGate } from "redux-persist/integration/react";
+import Teams from "./Components/Teams.jsx";
+import Circuits from "./Components/Circuits.jsx";
+import { Schedules } from "./Components/Schedules.jsx";
+import { Results } from "./Components/Results.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -37,6 +41,10 @@ function App() {
                 <Route path="/news" element={<News />} />
                 <Route path="/drivers" element={<DriverStandings />} />
                 <Route path="/test" element={<PodiumWinners />} />
+                <Route path="/teams" element={<Teams />} />
+                <Route path="/circuits" element={<Circuits />} />
+                <Route path="/schedules" element={<Schedules />} />
+                <Route path="/results" element={<Results />} />
                 {/* <Route element={<PrivateRoute />}> */}
                 {/* </Route> */}
               </Routes>

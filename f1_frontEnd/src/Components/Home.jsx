@@ -35,7 +35,7 @@ const Home = () => {
 
         <main className="flex flex-col w-full h-full gap-6">
           <div className="w-full h-full">
-            <div className="border-2 border-red-600"></div>
+            <div className="border-2 border-red-600 "></div>
             <CarouselImages />
             <div className="border-2 border-red-600"></div>
           </div>

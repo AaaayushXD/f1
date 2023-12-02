@@ -7,16 +7,13 @@ const driverSlice = createSlice({
   initialState,
   reducers: {
     driversAdded: (state, action) => {
+      state.splice(0, state.length);
       state.push(action.payload);
     },
   },
-  driversRemoved: {
-    reducer(state) {
-      state.pop();
-    },
-  },
+
 });
 
 export const selectAllDrivers = (state) => state.drivers;
-export const { driversAdded, driversRemoved } = driverSlice.actions;
+export const { driversAdded } = driverSlice.actions;
 export default driverSlice.reducer;

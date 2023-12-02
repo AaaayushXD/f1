@@ -1,13 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectAllDrivers,
-  driversAdded,
-  driversRemoved,
-} from "../reducers/DriverSlice";
+import { selectAllDrivers, driversAdded } from "../reducers/DriverSlice";
 import { db } from "../firebase/base";
 import { doc, getDoc } from "firebase/firestore";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";

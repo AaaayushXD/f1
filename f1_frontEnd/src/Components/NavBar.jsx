@@ -44,34 +44,43 @@ const NavBar = () => {
       <div className="hidden lg:flex w-[100%] h-[100%] px-4 items-center justify-between">
         {/* Logo */}
         <Link to={"/"} className="h-[80px]">
-          <img src={F1LOGO} alt="f1 logo" className="h-full cursor-pointer" />
+          <img
+            src={F1LOGO}
+            alt="f1 logo"
+            className="h-full cursor-pointer min-w-[80px]"
+          />
         </Link>
         {/* Menu */}
         <div>
           <ul className="flex items-center justify-center text-2xl">
             <Link to={"/"}>
-              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center font-extrabold">
                 Home
               </li>
             </Link>
             <Link to={"/drivers"}>
-              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center font-extrabold">
                 Drivers
               </li>
             </Link>
             <Link to={"/teams"}>
-              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center font-extrabold">
                 Teams
               </li>
             </Link>
             <Link to={"/schedules"}>
-              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center font-extrabold">
                 Schedules
               </li>
             </Link>
             <Link to={"/circuits"}>
-              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center">
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center font-extrabold">
                 Circuits
+              </li>
+            </Link>
+            <Link to={"/results"}>
+              <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center font-extrabold">
+                Results
               </li>
             </Link>
           </ul>
@@ -161,23 +170,11 @@ const NavBar = () => {
                 </li>
               </Link>
 
-              <select className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none w-full">
-                <option defaultChecked value={"Results"}>
+              <Link to={"/results"}>
+                <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
                   Results
-                </option>
-                <option
-                  className="bg-[#2f2f30d0] focus:outline-none"
-                  value={"Drivers Standing"}
-                >
-                  <Link to={"/results/drivers"}>Drivers Standing</Link>
-                </option>
-                <option
-                  className=" bg-[#2f2f30d0] focus:outline-none"
-                  value={"Constructor Standing"}
-                >
-                  <Link to={"/results/teams"}>Constructor Standing</Link>
-                </option>
-              </select>
+                </li>
+              </Link>
               <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none flex  items-center gap-5">
                 <CircleUser color="red" size={40} />
                 <Link to={"/profile"}>

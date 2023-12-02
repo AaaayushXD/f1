@@ -4,6 +4,10 @@ import storage from "redux-persist/lib/storage";
 
 import loadingReducer from "../reducers/LoadingSlice";
 import driversReducer from "../reducers/DriverSlice";
+import teamReducer from "../reducers/TeamSlice";
+import circuitReducer from "../reducers/CircuitSlice";
+import scheduleReducer from "../reducers/ScheduleSlice";
+import resultReducer from "../reducers/ResultSlice";
 
 const persistConfig = {
   key: "root",
@@ -12,6 +16,10 @@ const persistConfig = {
 const rootReducer = combineReducers({
   loading: loadingReducer,
   drivers: driversReducer,
+  teams: teamReducer,
+  circuits: circuitReducer,
+  schedules: scheduleReducer,
+  results: resultReducer,
 });
 const persistedReducers = persistReducer(persistConfig, rootReducer);
 

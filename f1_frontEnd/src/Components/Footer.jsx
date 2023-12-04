@@ -28,7 +28,7 @@ const Footer = () => {
           <Link to={"/teams"}>
             <p className="text-[#a3a3a3] mb-4 hover:underline px-1">Teams</p>
           </Link>
-          <Link to={"/results"}>
+          <Link to={"/results/1"}>
             <p className="text-[#a3a3a3] mb-4 hover:underline px-1">Results</p>
           </Link>
           <Link to={"/circuits"}>

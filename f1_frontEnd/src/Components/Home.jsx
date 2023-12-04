@@ -15,8 +15,8 @@ import About from "./About";
 import Footer from "./Footer.jsx";
 import News from "./News.jsx";
 import { PodiumWinners } from "./Drivers.jsx";
-import { Link } from "react-router-dom";
 import TEAMIMG from "../assets/bgImages/allTeam.jpg";
+import Contact from "./Contact.jsx";
 
 const Home = () => {
   const navigate = useNavigate();

@@ -63,10 +63,10 @@ const Circuits = () => {
                 />
               </div>
               <div className="border border-[#5a5a5a] mb-4 mt-2"></div>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
                 <div className="flex items-center w-full bg-[#2b2b2b96] px-5 py-3 gap-4 rounded-r-2xl rounded-l-lg hover:bg-[#5252526b]">
                   <p className="text-xl">Length: </p>
-                  <p className="text-3xl font-bold">
+                  <p className="text-3xl font-bold ">
                     {circuit.length}
                     <span className="pl-2 text-sm">(Km)</span>
                   </p>

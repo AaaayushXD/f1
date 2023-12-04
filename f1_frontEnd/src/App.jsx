@@ -16,7 +16,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import Teams from "./Components/Teams.jsx";
 import Circuits from "./Components/Circuits.jsx";
 import { Schedules } from "./Components/Schedules.jsx";
-import { Results } from "./Components/Results.jsx";
+import {  ResultPage} from "./Components/Results.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -37,6 +37,7 @@ function App() {
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                {/* <Route element={<PrivateRoute />}> */}
                 <Route path="/" element={<Home />} />
                 <Route path="/news" element={<News />} />
                 <Route path="/drivers" element={<DriverStandings />} />
@@ -44,8 +45,8 @@ function App() {
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/circuits" element={<Circuits />} />
                 <Route path="/schedules" element={<Schedules />} />
-                <Route path="/results" element={<Results />} />
-                {/* <Route element={<PrivateRoute />}> */}
+                <Route path="/results/:id" element={<ResultPage />} />
+
                 {/* </Route> */}
               </Routes>
             </AuthProvider>

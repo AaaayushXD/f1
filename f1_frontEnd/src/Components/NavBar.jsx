@@ -78,7 +78,7 @@ const NavBar = () => {
                 Circuits
               </li>
             </Link>
-            <Link to={"/results"}>
+            <Link to={"/results/1"}>
               <li className="hover:bg-[#b41111] h-[80px] flex items-center w-[150px] justify-center font-extrabold">
                 Results
               </li>
@@ -170,7 +170,7 @@ const NavBar = () => {
                 </li>
               </Link>
 
-              <Link to={"/results"}>
+              <Link to={"/results/1"}>
                 <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
                   Results
                 </li>

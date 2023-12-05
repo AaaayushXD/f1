@@ -14,9 +14,9 @@ import News from "./Components/News.jsx";
 import DriverStandings, { PodiumWinners } from "./Components/Drivers.jsx";
 import { PersistGate } from "redux-persist/integration/react";
 import Teams from "./Components/Teams.jsx";
-import Circuits from "./Components/Circuits.jsx";
 import { Schedules } from "./Components/Schedules.jsx";
-import {  ResultPage} from "./Components/Results.jsx";
+import { ResultPage } from "./Components/Results.jsx";
+import Circuits from "./Components/Circuits.jsx";
 
 function App() {
   const [loading, setLoading] = useState(false);

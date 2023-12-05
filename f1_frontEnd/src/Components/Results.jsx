@@ -53,7 +53,6 @@ export const Results = () => {
                   <p className="flex items-center justify-center gap-2 p-4 ">
                     <span className="hidden text-md md:block lg:text-lg font-extralight">
                       {" "}
-                      {result.Driver.givenName}{" "}
                     </span>
                     <span className="text-xl font-bold md:text-xl lg:text-2xl">
                       {" "}

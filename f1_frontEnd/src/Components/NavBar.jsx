@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import F1LOGO from "../assets/F1-Logo.png";
 import { CircleUser, LogOut, Menu, Moon, UserRound, X } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../firebase/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import {

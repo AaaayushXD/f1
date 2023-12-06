@@ -11,7 +11,6 @@ const driverSlice = createSlice({
       state.push(action.payload);
     },
   },
-
 });
 
 export const selectAllDrivers = (state) => state.drivers;

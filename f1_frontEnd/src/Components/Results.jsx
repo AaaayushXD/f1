@@ -64,7 +64,7 @@ export const Results = () => {
                     {result.Constructor.name}{" "}
                   </p>
                   <p className="p-4 text-xl md:text-2xl lg:text-3xl">
-                    {result.points}
+                    {result.points ? result.points : '0'}
                   </p>
                 </div>
               ))}

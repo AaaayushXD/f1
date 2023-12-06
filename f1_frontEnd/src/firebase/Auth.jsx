@@ -8,11 +8,7 @@ import {
 import { GoogleAuthProvider } from "firebase/auth";
 import { createContext, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  activateLoading,
-  deactivateLoading,
-  selectLoading,
-} from "../reducers/LoadingSlice";
+import { selectLoading } from "../reducers/LoadingSlice";
 import { useState } from "react";
 
 const AuthContext = createContext();

@@ -6,23 +6,15 @@ import BGIMG from "../assets/bgImages/black.jpeg";
 import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  activateLoading,
-  deactivateLoading,
   selectLoading,
 } from "../reducers/LoadingSlice.jsx";
-import { PacManLoader } from "../loading/LoadingComponent";
 import About from "./About";
 import Footer from "./Footer.jsx";
 import News from "./News.jsx";
 import { PodiumWinners } from "./Drivers.jsx";
 import TEAMIMG from "../assets/bgImages/allTeam.jpg";
-import Contact from "./Contact.jsx";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const loading = useSelector(selectLoading);
-  const dispatch = useDispatch();
-
   return (
     <>
       <div
@@ -52,7 +44,7 @@ const Home = () => {
             <h1 className="mb-8 text-4xl text-center text-[#39b2ad]">
               Podim Winners
             </h1>
-            <PodiumWinners />
+            {/* <PodiumWinners /> */}
           </div>
           <div className="w-full h-full mb-8 bg-[#38343473]">
             <h1 className="px-10 py-4 mb-6 text-3xl text-center text-red-600 sm:text-left sm:text-6xl">

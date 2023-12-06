@@ -34,7 +34,7 @@ const Circuits = () => {
         </h1>
       </div>
       <div className="grid w-full h-full grid-cols-1 gap-8 p-5 md:grid-cols-2">
-        {circuits &&
+        {circuits[0] &&
           circuits[0].map((circuit, index) => (
             <div
               key={index}

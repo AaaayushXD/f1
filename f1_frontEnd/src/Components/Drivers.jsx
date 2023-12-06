@@ -5,7 +5,6 @@ import { db } from "../firebase/base";
 import { doc, getDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import NavBar from "./NavBar";
-import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 
 //toast style
@@ -31,6 +30,7 @@ export const Drivers = () => {
         const driversRef = doc(db, "drivers", "driverDetails");
         const driversInfo = await getDoc(driversRef);
         const driversDetails = driversInfo.data();
+        console.log(driversDetails);
         const driverDetail = driversDetails?.driverDetail;
         if (driverDetail) {
           dispatch(driversAdded(driverDetail));
@@ -81,7 +81,7 @@ export const Drivers = () => {
                 <div className="flex flex-col gap-8 px-4">
                   <p className="text-xl">{driver.teamName}</p>
                   <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {driver.points}
+                    {driver.points ? driver.points : "0"}
                     <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
                       PTS
                     </span>
@@ -101,7 +101,6 @@ const DriverStandings = () => {
     <>
       <NavBar />
       <div className="border-2 border-red-600"></div>
-
       <div className="flex flex-col w-full h-full gap-10 mb-8">
         <h1 className="text-5xl text-[#ff697d]  px-6 py-4 text-center">
           Driver's Standing 2023
@@ -128,7 +127,28 @@ const DriverStandings = () => {
 export default DriverStandings;
 
 export const PodiumWinners = () => {
+  const dispatch = useDispatch();
   const drivers = useSelector(selectAllDrivers);
+
+  useEffect(() => {
+    const fetchDrivers = async () => {
+      try {
+        const driversRef = doc(db, "drivers", "driverDetails");
+        const driversInfo = await getDoc(driversRef);
+        console.log(driversInfo);
+        const driversDetails = driversInfo.data();
+        const driverDetail = driversDetails?.driverDetail;
+        if (driverDetail) {
+          dispatch(driversAdded(driverDetail));
+        }
+        // console.log(driverDetail);
+      } catch (err) {
+        console.error(err);
+        toast.error("Error fetching driver's information", toastStyle);
+      }
+    };
+    fetchDrivers();
+  }, []);
 
   const podiumWinners = drivers[0]?.slice(0, 3) || [];
   const [firstPlace, secondPlace, thirdPlace] = podiumWinners;
@@ -141,7 +161,7 @@ export const PodiumWinners = () => {
           <div className="flex items-center justify-between px-2 py-3">
             <p className="text-4xl text-[#cfcfcf]">2nd</p>
             <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-              {secondPlace.points}
+              {secondPlace.points ? secondPlace.points : "0"}
               <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
                 PTS
               </span>
@@ -170,7 +190,7 @@ export const PodiumWinners = () => {
           <div className="flex items-center justify-between px-2 py-3">
             <p className="text-4xl text-[#ff697d]">1st</p>
             <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-              {firstPlace.points}
+              {firstPlace.points ? firstPlace.points : "0"}
               <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
                 PTS
               </span>
@@ -199,7 +219,7 @@ export const PodiumWinners = () => {
           <div className="flex items-center justify-between px-2 py-3">
             <p className="text-4xl text-[#9b6229]">3rd</p>
             <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-              {thirdPlace.points}
+              {thirdPlace.points ? thirdPlace.points : "0"}
               <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
                 PTS
               </span>

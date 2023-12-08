@@ -1,13 +1,7 @@
-import React, { useEffect } from "react";
-import { useAuth } from "../firebase/Auth";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import CarouselImages from "./Carousel";
 import BGIMG from "../assets/bgImages/black.jpeg";
 import NavBar from "./NavBar";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectLoading,
-} from "../reducers/LoadingSlice.jsx";
 import About from "./About";
 import Footer from "./Footer.jsx";
 import News from "./News.jsx";
@@ -15,6 +9,7 @@ import { PodiumWinners } from "./Drivers.jsx";
 import TEAMIMG from "../assets/bgImages/allTeam.jpg";
 
 const Home = () => {
+
   return (
     <>
       <div
@@ -24,7 +19,6 @@ const Home = () => {
         <div className="w-[100%] h-[80px]">
           <NavBar />
         </div>
-
         <main className="flex flex-col w-full h-full gap-6">
           <div className="w-full h-full">
             <div className="border-2 border-red-600 "></div>

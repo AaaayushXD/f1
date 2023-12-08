@@ -7,16 +7,12 @@ import {
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { createContext, useContext, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectLoading } from "../reducers/LoadingSlice";
 import { useState } from "react";
 
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
-  const loading = useSelector(selectLoading);
-  const dispatch = useDispatch();
   const [currentUser, setCurrentUser] = useState();
 
   const signUpWithEmail = (email, password) => {
@@ -48,9 +44,5 @@ export function AuthProvider({ children }) {
     signInWithGoogle,
     logOut,
   };
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

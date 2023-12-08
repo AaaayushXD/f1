@@ -5,7 +5,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 export const PacManLoader = (props) => {
   return (
-    <div className="w-full h-[100vh] bg-[#272727] flex items-center justify-center">
+    <div className="w-screen h-screen overflow-hidden bg-[#1a1919] flex items-center justify-center">
       <PacmanLoader
         color="#d63636"
         loading={props.loading}
@@ -19,7 +19,7 @@ export const PacManLoader = (props) => {
 
 export const Loader = (props) => {
   return (
-    <div className="w-full h-[100%] bg-[#272727] flex items-center justify-center">
+    <div className="flex items-center justify-center w-full h-full">
       <GridLoader
         color="#d63636"
         loading={props.loading}

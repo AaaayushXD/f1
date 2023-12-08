@@ -1,5 +1,4 @@
 import React from "react";
-import { CarFront, Users } from "lucide-react";
 
 const About = () => {
   return (

@@ -5,10 +5,11 @@ import Footer from "./Footer";
 import { useSelector } from "react-redux";
 import { selectAllRaceSchedule } from "../reducers/ScheduleSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import { Pulse } from "../loading/LoadingComponent";
 
 export const Results = () => {
   const [results, setResults] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   const fetchRoundResult = async () => {
@@ -23,9 +24,11 @@ export const Results = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       const data = await fetchRoundResult();
       setResults(data);
+      setLoading(false);
     };
     fetchData();
   }, [id]);
@@ -37,38 +40,44 @@ export const Results = () => {
       </div>
       <div className="px-5 text-lg text-red-600">Round {id}</div>
 
-      <div className="flex items-center justify-center w-full h-full">
+      <div className="flex items-center justify-center w-full h-full transition-all duration-500 ease-in-out">
         <div className="w-full lg:max-w-[1500px]">
           <DefaultResultTable />
-          <div className="mb-8">
-            {results &&
-              results.map((result, index) => (
-                <div
-                  key={index}
-                  className="grid w-full h-full grid-cols-4 justify-items-center bg-[#4e4e4e3d] border-b mt-4 rounded-b-lg border-[#3f3f3f]  drop-shadow-xl items-center hover:bg-[#3e3e3e83] cursor-pointer "
-                >
-                  <p className="flex items-center h-full p-4 text-xl text-left md:text-3xl">
-                    {result.position.trim()}
-                  </p>
-                  <p className="flex items-center justify-center gap-2 p-4 ">
-                    <span className="hidden text-md md:block lg:text-lg font-extralight">
+          {loading ? (
+            <div className="w-full min-h-[50vh] flex justify-center items-center">
+              <Pulse loading={loading} />
+            </div>
+          ) : (
+            <div className="mb-8">
+              {results &&
+                results.map((result, index) => (
+                  <div
+                    key={index}
+                    className="grid w-full h-full grid-cols-4 justify-items-center bg-[#4e4e4e3d] border-b mt-4 rounded-b-lg border-[#3f3f3f]  drop-shadow-xl items-center hover:bg-[#3e3e3e83] cursor-pointer "
+                  >
+                    <p className="flex items-center h-full p-4 text-xl text-left md:text-3xl">
+                      {result.position.trim()}
+                    </p>
+                    <p className="flex items-center justify-center gap-2 p-4 ">
+                      <span className="hidden text-md md:block lg:text-lg font-extralight">
+                        {" "}
+                      </span>
+                      <span className="text-xl font-bold md:text-xl lg:text-2xl">
+                        {" "}
+                        {result.Driver.familyName}{" "}
+                      </span>
+                    </p>
+                    <p className="p-4 text-xl text-center lg:font-bold">
                       {" "}
-                    </span>
-                    <span className="text-xl font-bold md:text-xl lg:text-2xl">
-                      {" "}
-                      {result.Driver.familyName}{" "}
-                    </span>
-                  </p>
-                  <p className="p-4 text-xl text-center lg:font-bold">
-                    {" "}
-                    {result.Constructor.name}{" "}
-                  </p>
-                  <p className="p-4 text-xl md:text-2xl lg:text-3xl">
-                    {result.points ? result.points : '0'}
-                  </p>
-                </div>
-              ))}
-          </div>
+                      {result.Constructor.name}{" "}
+                    </p>
+                    <p className="p-4 text-xl md:text-2xl lg:text-3xl">
+                      {result.points ? result.points : "0"}
+                    </p>
+                  </div>
+                ))}
+            </div>
+          )}
         </div>
       </div>
     </>

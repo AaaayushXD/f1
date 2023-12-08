@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectLoading,
-  activateLoading,
-  deactivateLoading,
-} from "../reducers/LoadingSlice.jsx";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../firebase/Auth.jsx";
-import { Loader, PacManLoader, Pulse } from "../loading/LoadingComponent";
 import { toast } from "react-toastify";
 import IMG from "../assets/bgImages/f1_img2.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import { userAdded } from "../reducers/UserSlice.jsx";
 
 const toastStyle = {
   position: "top-right",
@@ -23,14 +18,9 @@ const toastStyle = {
 };
 
 const SignInComponent = (props) => {
-  const loading = useSelector(selectLoading);
-
   return (
     <>
-      <button
-        disabled={loading}
-        className="flex items-center justify-between w-[100%] h-[100%]"
-      >
+      <button className="flex items-center justify-between w-[100%] h-[100%]">
         <p className=" h-[100%] py-1 font-bold items-center justify-center flex w-[100%]  text-lg">
           {props.message}
         </p>
@@ -46,7 +36,6 @@ const SignInComponent = (props) => {
 export default SignInComponent;
 
 export const LogInForm = () => {
-  const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -61,7 +50,8 @@ export const LogInForm = () => {
     e.preventDefault();
 
     try {
-      await loginWithEmail(email, password);
+      const user = await loginWithEmail(email, password);
+      dispatch(userAdded(user));
       navigate("/");
     } catch (e) {
       console.log(e);
@@ -119,7 +109,7 @@ export const LogInForm = () => {
             type="submit"
             className="w-[60%] h-[55px] bg-transparent border border-[#ff697d] my-3 py-2 px-3 rounded-xl hover:bg-[#ff697d] focus:bg-[#ff697d] font-bold"
           >
-            {loading ? <Pulse /> : "LogIn"}
+            LogIn
           </button>
           <Link to={"/register"} className="text-xs text-left">
             Don't have an Account?
@@ -132,7 +122,6 @@ export const LogInForm = () => {
 };
 
 export const SignUpForm = () => {
-  const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -147,7 +136,8 @@ export const SignUpForm = () => {
     e.preventDefault();
 
     try {
-      await signUpWithEmail(email, password);
+      const user = await signUpWithEmail(email, password);
+      dispatch(userAdded(user));
       navigate("/");
     } catch (e) {
       toast.error("Login Failed", toastStyle);
@@ -159,7 +149,6 @@ export const SignUpForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col m-3 w-[full]">
-        {loading && <PacManLoader loading={true} />}
         {/* Email */}
         <div className="flex flex-col email ">
           <label htmlFor="email" className="p-2 mt-2 text-lg text-[#ff697d]">
@@ -203,7 +192,7 @@ export const SignUpForm = () => {
             type="submit"
             className="w-[60%] h-[55px] bg-transparent border border-[#ff697d] my-3 py-2 px-3 rounded-xl hover:bg-[#ff697d] focus:bg-[#ff697d] font-bold"
           >
-            {loading ? <Pulse /> : "Sign Up"}
+            Sign Up
           </button>
           <Link className="text-xs" to={"/login"}>
             Already have an Account?

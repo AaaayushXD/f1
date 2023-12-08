@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../firebase/Auth";
+import { useSelector } from "react-redux";
+import { selectAllUsers } from "../reducers/UserSlice";
 
 export default function PrivateRoute() {
-  const { currentUser } = useAuth();
-  return currentUser ? <Outlet /> : <Navigate to={"/login"} />;
+  const users = useSelector(selectAllUsers);
+  return users.length !== 0 ? <Outlet /> : <Navigate to={"/login"} />;
 }

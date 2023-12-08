@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import F1LOGO from "../assets/F1-Logo.png";
 import { CircleUser, LogOut, Menu, Moon, UserRound, X } from "lucide-react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../firebase/Auth";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  activateLoading,
-  deactivateLoading,
-  selectLoading,
-} from "../reducers/LoadingSlice";
+import { selectAllUsers, userRemoved } from "../reducers/UserSlice";
 
 const NavBar = () => {
   //* state
   const [menu, setMenu] = useState(false);
   const [userIcon, setUserIcon] = useState(false);
-  const loading = useSelector(selectLoading);
-
+  const users = useSelector(selectAllUsers);
   //*
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   //* current User and Logout function
-  const { logOut, currentUser } = useAuth();
+  const { logOut } = useAuth();
 
   //* get userName
-  const user = currentUser && currentUser.currentUser?.email.split("@")[0];
+  const user =
+    users[0]?.user.displayName ||
+    users[0]?.user.email[0].toUpperCase() +
+      users[0]?.user.email.split("@")[0].slice(1);
 
   const changeMenu = () => {
     setMenu((prev) => !prev);
@@ -35,6 +33,7 @@ const NavBar = () => {
   };
 
   const userLogOut = async () => {
+    dispatch(userRemoved());
     await logOut();
     navigate("/login");
   };
@@ -43,7 +42,7 @@ const NavBar = () => {
       {/* Desktop */}
       <div className="hidden lg:flex w-[100%] h-[100%] px-4 items-center justify-between">
         {/* Logo */}
-        <Link to={"/"} className="h-[80px]">
+        <Link to={"/"} className="h-[80px] cursor-pointer">
           <img
             src={F1LOGO}
             alt="f1 logo"
@@ -87,7 +86,18 @@ const NavBar = () => {
         </div>
         {/* Account */}
         <div className="relative cursor-pointer" onClick={showUserMenu}>
-          <CircleUser size={50} className="text-red-600 hover:text-red-800" />
+          {users[0]?.user.photoURL ? (
+            <div>
+              <img
+                src={users[0]?.user.photoURL}
+                alt={users[0]?.user.displayName}
+                loading="lazy"
+                className="w-[60px] h-[60px] rounded-full cursor-pointer"
+              />
+            </div>
+          ) : (
+            <CircleUser color="red" size={60} />
+          )}
           {userIcon && (
             <div
               className="bg-[#d1d1d1] w-[200px] absolute top-[60px] right-0 h-[190px] rounded-lg "
@@ -176,11 +186,20 @@ const NavBar = () => {
                 </li>
               </Link>
               <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none flex  items-center gap-5">
-                <CircleUser color="red" size={40} />
-                <Link to={"/profile"}>
-                  {user?.charAt(0).toUpperCase() + user?.slice(1) ||
-                    "User Not Found"}
-                </Link>
+                {users[0]?.user.photoURL ? (
+                  <div>
+                    <img
+                      src={users[0]?.user.photoURL}
+                      alt={users[0]?.user.displayName}
+                      loading="lazy"
+                      className="w-[40px] h-[40px] rounded-full cursor-pointer"
+                    />
+                  </div>
+                ) : (
+                  <CircleUser color="red" size={40} />
+                )}
+
+                <Link to={"/profile"}>{user || "User Not Found"}</Link>
               </li>
             </ul>
           </div>

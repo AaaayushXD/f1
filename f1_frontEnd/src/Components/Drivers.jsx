@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import { Loader } from "../loading/LoadingComponent";
 
 //toast style
 const toastStyle = {
@@ -21,20 +22,22 @@ const toastStyle = {
 
 export const Drivers = () => {
   const drivers = useSelector(selectAllDrivers);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
+    setLoading(true);
     // fetch Drivers
     const fetchDrivers = async () => {
       try {
         const driversRef = doc(db, "drivers", "driverDetails");
         const driversInfo = await getDoc(driversRef);
         const driversDetails = driversInfo.data();
-        console.log(driversDetails);
         const driverDetail = driversDetails?.driverDetail;
         if (driverDetail) {
           dispatch(driversAdded(driverDetail));
         }
+        setLoading(false);
       } catch (err) {
         console.error(err);
         toast.error("Error fetching driver's information", toastStyle);
@@ -49,50 +52,60 @@ export const Drivers = () => {
   };
 
   return (
-    <div className="grid w-full h-full grid-cols-1 gap-8 px-5 sm:grid-cols-2 lg:grid-cols-3 justify-items-center sm:gap-7 lg:gap-4">
-      {drivers[0] &&
-        drivers[0]?.map((driver, index) => (
-          <div
-            key={index}
-            className="w-full h-full m-4 cursor-pointer max-w-[500px] border-t border-r rounded-xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500"
-          >
-            <div className="w-full h-full px-4 py-3">
-              <div className="flex items-center justify-between">
-                <div className="mb-2 ">
-                  <p className=" text-md">{driver.driverName.split(" ")[0]}</p>
-                  <p className="text-3xl font-bold">
-                    {driver.driverName.split(" ")[1]}
-                  </p>
-                </div>
-                <div>
-                  <p
-                    className="text-5xl font-bold"
-                    style={{
-                      color: podium(driver.rank) ? "#ff697d" : "#39b2ad",
-                    }}
-                  >
-                    {driver.rank}
-                  </p>
-                </div>
-              </div>
-              <div className="border border-[#525252] mb-3"></div>
+    <>
+      {loading ? (
+        <div className="w-full min-h-[50vh] flex justify-center items-center">
+          <Loader loading={loading} />
+        </div>
+      ) : (
+        <div className="grid w-full h-full grid-cols-1 gap-8 px-5 sm:grid-cols-2 lg:grid-cols-3 justify-items-center sm:gap-7 lg:gap-4">
+          {drivers[0] &&
+            drivers[0]?.map((driver, index) => (
+              <div
+                key={index}
+                className="w-full h-full m-4 cursor-pointer max-w-[500px] border-t border-r rounded-xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500"
+              >
+                <div className="w-full h-full px-4 py-3">
+                  <div className="flex items-center justify-between">
+                    <div className="mb-2 ">
+                      <p className=" text-md">
+                        {driver.driverName.split(" ")[0]}
+                      </p>
+                      <p className="text-3xl font-bold">
+                        {driver.driverName.split(" ")[1]}
+                      </p>
+                    </div>
+                    <div>
+                      <p
+                        className="text-5xl font-bold"
+                        style={{
+                          color: podium(driver.rank) ? "#ff697d" : "#39b2ad",
+                        }}
+                      >
+                        {driver.rank}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
 
-              <div className="flex items-center justify-between ">
-                <div className="flex flex-col gap-8 px-4">
-                  <p className="text-xl">{driver.teamName}</p>
-                  <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {driver.points ? driver.points : "0"}
-                    <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
-                      PTS
-                    </span>
-                  </p>
+                  <div className="flex items-center justify-between ">
+                    <div className="flex flex-col gap-8 px-4">
+                      <p className="text-xl">{driver.teamName}</p>
+                      <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
+                        {driver.points ? driver.points : "0"}
+                        <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
+                          PTS
+                        </span>
+                      </p>
+                    </div>
+                    <img src={driver.driverImage} alt={driver.driverName} />
+                  </div>
                 </div>
-                <img src={driver.driverImage} alt={driver.driverName} />
               </div>
-            </div>
-          </div>
-        ))}
-    </div>
+            ))}
+        </div>
+      )}
+    </>
   );
 };
 

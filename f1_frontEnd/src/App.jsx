@@ -19,17 +19,8 @@ import { ResultPage } from "./Components/Results.jsx";
 import Circuits from "./Components/Circuits.jsx";
 
 function App() {
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
   return (
     <>
-      {loading && <PacManLoader />}
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Router>
@@ -37,17 +28,16 @@ function App() {
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                {/* <Route element={<PrivateRoute />}> */}
-                <Route path="/" element={<Home />} />
-                <Route path="/news" element={<News />} />
-                <Route path="/drivers" element={<DriverStandings />} />
-                <Route path="/test" element={<PodiumWinners />} />
-                <Route path="/teams" element={<Teams />} />
-                <Route path="/circuits" element={<Circuits />} />
-                <Route path="/schedules" element={<Schedules />} />
-                <Route path="/results/:id" element={<ResultPage />} />
-
-                {/* </Route> */}
+                <Route element={<PrivateRoute />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/news" element={<News />} />
+                  <Route path="/drivers" element={<DriverStandings />} />
+                  <Route path="/test" element={<PodiumWinners />} />
+                  <Route path="/teams" element={<Teams />} />
+                  <Route path="/circuits" element={<Circuits />} />
+                  <Route path="/schedules" element={<Schedules />} />
+                  <Route path="/results/:id" element={<ResultPage />} />
+                </Route>
               </Routes>
             </AuthProvider>
           </Router>

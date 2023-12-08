@@ -34,11 +34,11 @@ const Home = () => {
               <div className="absolute top-0 left-0 w-full h-full bg-[#1a1a1a3a] "></div>
             </div>
           </div>
-          <div className="w-full h-full">
+          <div className="w-full h-full mt-8 mb-6">
             <h1 className="mb-8 text-4xl text-center text-[#39b2ad]">
               Podim Winners
             </h1>
-            {/* <PodiumWinners /> */}
+            <PodiumWinners />
           </div>
           <div className="w-full h-full mb-8 bg-[#38343473]">
             <h1 className="px-10 py-4 mb-6 text-3xl text-center text-red-600 sm:text-left sm:text-6xl">

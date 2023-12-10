@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import F1LOGO from "../assets/F1-Logo.png";
-import { CircleUser, LogOut, Menu, Moon, UserRound, X } from "lucide-react";
+import {
+  CalendarClock,
+  CarFront,
+  CircleUser,
+  Crown,
+  Home,
+  LogOut,
+  Moon,
+  UserRound,
+  Users,
+  X,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../firebase/Auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +19,6 @@ import { selectAllUsers, userRemoved } from "../reducers/UserSlice";
 
 const NavBar = () => {
   //* state
-  const [menu, setMenu] = useState(false);
   const [userIcon, setUserIcon] = useState(false);
   const users = useSelector(selectAllUsers);
   //*
@@ -23,10 +33,6 @@ const NavBar = () => {
     users[0]?.user.displayName ||
     users[0]?.user.email[0].toUpperCase() +
       users[0]?.user.email.split("@")[0].slice(1);
-
-  const changeMenu = () => {
-    setMenu((prev) => !prev);
-  };
 
   const showUserMenu = () => {
     setUserIcon((prev) => !prev);
@@ -87,126 +93,104 @@ const NavBar = () => {
         {/* Account */}
         <div className="relative cursor-pointer" onClick={showUserMenu}>
           {users[0]?.user.photoURL ? (
-            <div>
+            <Link to={"/profile"}>
               <img
                 src={users[0]?.user.photoURL}
                 alt={users[0]?.user.displayName}
                 loading="lazy"
                 className="w-[60px] h-[60px] rounded-full cursor-pointer"
               />
-            </div>
+            </Link>
           ) : (
-            <CircleUser color="red" size={60} />
-          )}
-          {userIcon && (
-            <div
-              className="bg-[#d1d1d1] w-[200px] absolute top-[60px] right-0 h-[190px] rounded-lg "
-              style={{ zIndex: 50 }}
-            >
-              <ul className="flex flex-col w-full h-full">
-                <Link
-                  to={"/profile"}
-                  className="flex w-[100%] py-3 px-4 border-b-2 border-b-[#3e3e3e] text-[#3e3e3e] gap-4 items-center hover:bg-[#3e3e3e8f] hover:text-[#cecaca]"
-                >
-                  <UserRound size={35} />
-                  <li className="text-2xl ">Profile</li>
-                </Link>
-                <div className="flex w-[100%] py-3 px-4 border-b-2 border-b-[#3e3e3e] text-[#3e3e3e] gap-4 items-center hover:bg-[#3e3e3e8f] hover:text-[#cecaca]">
-                  <Moon size={35} />
-                  <li className="text-xl ">Dark</li>
-                </div>
-                <div
-                  className="flex w-[100%] py-3 px-4  text-[#3e3e3e] gap-4 items-center hover:bg-[#3e3e3e8f] hover:text-[#cecaca]"
-                  onClick={userLogOut}
-                >
-                  <LogOut size={35} />
-                  <li className="text-2xl ">Log Out</li>
-                </div>
-              </ul>
-            </div>
+            <Link to={"/profile"}>
+              <CircleUser color="red" size={60} />
+            </Link>
           )}
         </div>
       </div>
 
       {/* Mobile */}
 
-      <div className="w-[100%] h-[100%]  px-4 relative lg:hidden">
+      <div className="w-[100%] h-[100%]   relative lg:hidden">
         {/* Logo */}
-        <div className="flex items-center justify-between w-full h-full ">
+        <div className="flex items-center justify-between w-full h-full px-4">
           <Link className="w-full h-[80px]" to={"/"}>
             <img src={F1LOGO} alt="f1 logo" className="h-full" />
           </Link>
           {/* Menu */}
-          <div
-            onClick={changeMenu}
-            className="cursor-pointer focus:select-none focus:outline-none"
-          >
-            {menu ? (
-              <X color="red" size={50} />
-            ) : (
-              <Menu color="red" size={50} />
-            )}
-          </div>
+          {users[0]?.user.photoURL ? (
+            <Link to={"/profile"} className="cursor-pointer">
+              <img
+                src={users[0]?.user.photoURL}
+                alt={users[0]?.user.displayName}
+                loading="lazy"
+                className="w-[60px] h-[60px] rounded-full cursor-pointer"
+              />
+            </Link>
+          ) : (
+            <Link to={"/profile"} className="text-red-500 hover:text-red-600">
+              <CircleUser size={60} />
+            </Link>
+          )}
         </div>
-        {menu && (
-          <div
-            className="bg-[#111111d8] absolute top-[80px] left-0 z-10 w-full activate"
-            style={{ zIndex: 10 }}
-          >
-            <ul className="">
-              <Link to={"/"}>
-                <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
-                  Home
-                </li>
-              </Link>
-              <Link to={"/drivers"}>
-                <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
-                  Drivers
-                </li>
-              </Link>
-              <Link to={"/teams"}>
-                <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
-                  Teams
-                </li>
-              </Link>
-              <Link to={"/schedules"}>
-                <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
-                  Schedules
-                </li>
-              </Link>
-              <Link to={"/circuits"}>
-                <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
-                  Circuits
-                </li>
-              </Link>
 
-              <Link to={"/results/1"}>
-                <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none">
-                  Results
-                </li>
-              </Link>
-              <li className="p-3 text-2xl border-b bg-[#2f2f30d0] rounded-lg cursor-pointer hover:bg-[#11111111] hover:text-[#ff697d] focus:outline-none flex  items-center gap-5">
-                {users[0]?.user.photoURL ? (
-                  <div>
-                    <img
-                      src={users[0]?.user.photoURL}
-                      alt={users[0]?.user.displayName}
-                      loading="lazy"
-                      className="w-[40px] h-[40px] rounded-full cursor-pointer"
-                    />
-                  </div>
-                ) : (
-                  <CircleUser color="red" size={40} />
-                )}
-
-                <Link to={"/profile"}>{user || "User Not Found"}</Link>
-              </li>
-            </ul>
-          </div>
-        )}
+        <MobileMenu />
       </div>
     </nav>
   );
 };
 
 export default NavBar;
+// users[0]?.user.photoURL;
+
+export const MobileMenu = () => {
+  return (
+    <>
+      <div
+        className="flex items-center w-full max-w-[1200px] h-full justify-evenly bg-[#1a1919] bottom-0 fixed max-h-[80px] rounded-t-xl overflow-hidden z-10 translate-x-[-8px] "
+        id="mobile_nav"
+      >
+        <div className="relative p-3 md:w-full md:items-center md:flex md:justify-center md:gap-10  rounded-2xl hover:border-[#fa8b9a] hover:text-red-500 hover:shadow-md hover:shadow-[#ff697d] font-bold hover:scale-110 transition-all cursor-pointer duration-500">
+          <Link
+            to={"/"}
+            className="flex items-center justify-center w-full h-full"
+          >
+            <Home size={30} />
+          </Link>
+        </div>
+        <div className="relative p-3 md:w-full md:items-center md:flex md:justify-center md:gap-10  rounded-2xl hover:border-[#ff697d] hover:text-red-500 hover:shadow-md hover:shadow-[#ff697d] font-bold hover:scale-110 transition-all cursor-pointer duration-500">
+          <Link
+            to={"/drivers"}
+            className="flex items-center justify-center w-full h-full"
+          >
+            <Users size={30} />
+          </Link>
+        </div>
+        <div className="relative p-3 md:w-full md:items-center md:flex md:justify-center md:gap-10  rounded-2xl hover:border-[#ff697d] hover:text-red-500 hover:shadow-md hover:shadow-[#ff697d] font-bold hover:scale-110 transition-all cursor-pointer duration-500">
+          <Link
+            to={"/teams"}
+            className="flex items-center justify-center w-full h-full"
+          >
+            <CarFront size={30} />
+          </Link>
+        </div>
+        <div className="relative p-3 md:w-full md:items-center md:flex md:justify-center md:gap-10  rounded-2xl hover:border-[#ff697d] hover:text-red-500 hover:shadow-md hover:shadow-[#ff697d] font-bold hover:scale-110 transition-all cursor-pointer duration-500">
+          <Link
+            to={"/schedules "}
+            className="flex items-center justify-center w-full h-full"
+          >
+            <CalendarClock size={30} />
+          </Link>
+        </div>
+        <div className="relative p-3 md:w-full md:items-center md:flex md:justify-center md:gap-10 rounded-2xl hover:border-[#ff697d] hover:text-red-500 hover:shadow-md hover:shadow-[#ff697d] font-bold hover:scale-105 transition-all cursor-pointer duration-500">
+          <Link
+            to={"/results/1 "}
+            className="flex items-center justify-center w-full h-full"
+          >
+            <Crown size={30} />
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+};

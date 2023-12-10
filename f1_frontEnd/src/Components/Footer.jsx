@@ -79,7 +79,7 @@ const Footer = () => {
       <div className="border border-[#5a5a5a] m-2"></div>
 
       {/* copyright */}
-      <div className="flex flex-col justify-between gap-3 px-4 sm:flex-row">
+      <div className="flex flex-col justify-between gap-3 px-4 pb-[80px] md:pb-5 sm:flex-row">
         <div className="px-3 py-2">
           <p className="flex gap-1 text-[#a3a3a3]">
             © 2023{" "}

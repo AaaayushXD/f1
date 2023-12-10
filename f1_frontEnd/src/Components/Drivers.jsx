@@ -177,14 +177,14 @@ export const PodiumWinners = () => {
         </div>
       ) : (
         <div>
-          {podiumWinners && (
+          {firstPlace && secondPlace && thirdPlace && (
             <div className="flex flex-wrap items-center justify-center w-full h-full gap-8 p-5 text-white ">
               {/* 2nd place */}
               <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500 cursor-pointer">
                 <div className="flex items-center justify-between px-2 py-3">
                   <p className="text-4xl text-[#cfcfcf]">2nd</p>
                   <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {secondPlace.points ? secondPlace.points : "0"}
+                    {secondPlace?.points}
                     <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
                       PTS
                     </span>
@@ -215,7 +215,7 @@ export const PodiumWinners = () => {
                 <div className="flex items-center justify-between px-2 py-3">
                   <p className="text-4xl text-[#ff697d]">1st</p>
                   <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {firstPlace.points ? firstPlace.points : "0"}
+                    {firstPlace?.points}
                     <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
                       PTS
                     </span>
@@ -246,7 +246,7 @@ export const PodiumWinners = () => {
                 <div className="flex items-center justify-between px-2 py-3">
                   <p className="text-4xl text-[#9b6229]">3rd</p>
                   <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {thirdPlace.points ? thirdPlace.points : "0"}
+                    {thirdPlace?.points}
                     <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
                       PTS
                     </span>

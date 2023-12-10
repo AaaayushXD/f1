@@ -17,6 +17,8 @@ import { ResultPage } from "./Components/Results.jsx";
 import Circuits from "./Components/Circuits.jsx";
 import TermsAndConditions from "./legal/TermsAndConditions.jsx";
 import Policy from "./legal/Policy.jsx";
+import Champions from "./Components/Champions.jsx";
+import Profile from "./Components/Profile.jsx";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
                   <Route path="/circuits" element={<Circuits />} />
                   <Route path="/schedules" element={<Schedules />} />
                   <Route path="/results/:id" element={<ResultPage />} />
+                  <Route path="/champions" element={<Champions />} />
+                  <Route path="/profile" element={<Profile />} />
                 </Route>
                 <Route path="/terms" element={<TermsAndConditions />} />
                 <Route path="/privacy" element={<Policy />} />

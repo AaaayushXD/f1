@@ -7,6 +7,7 @@ import circuitReducer from "../reducers/CircuitSlice";
 import scheduleReducer from "../reducers/ScheduleSlice";
 import resultReducer from "../reducers/ResultSlice";
 import userReducer from "../reducers/UserSlice";
+import FavouriteReducer from "../reducers/FavouriteSlice";
 
 const persistConfig = {
   key: "root",
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   schedules: scheduleReducer,
   results: resultReducer,
   users: userReducer,
+  favourites: FavouriteReducer,
 });
 const persistedReducers = persistReducer(persistConfig, rootReducer);
 

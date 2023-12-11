@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "site": "f1-aayush",
     "public": "dist",
     "rewrites": [
       {

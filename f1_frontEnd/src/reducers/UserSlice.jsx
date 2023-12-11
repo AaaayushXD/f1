@@ -12,7 +12,7 @@ const userSlice = createSlice({
       state.push(action.payload);
     },
     userRemoved: (state) => {
-      state.pop(state);
+      state.splice(0, state.length);
     },
   },
 });

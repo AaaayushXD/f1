@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  deleteUser,
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { createContext, useContext, useEffect } from "react";
@@ -29,6 +30,9 @@ export function AuthProvider({ children }) {
   const logOut = () => {
     return signOut(auth);
   };
+  const removeAcc = () => {
+    return deleteUser(currentUser);
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -43,6 +47,7 @@ export function AuthProvider({ children }) {
     loginWithEmail,
     signInWithGoogle,
     logOut,
+    removeAcc,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

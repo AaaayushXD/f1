@@ -25,6 +25,12 @@
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
+  #deletePrompt {
+    background: rgba(30, 30, 30, 0.897);
+    box-shadow: 0 8px 32px 0 rgba(235, 22, 22, 0.37);
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+  }
 
   #mobile_nav {
     background: rgba(30, 30, 30, 0.897);

@@ -6,7 +6,7 @@ import SignInComponent, { LogInForm, LogInImage } from "./SignInComponent";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../firebase/Auth.jsx";
 import { useNavigate } from "react-router-dom";
-import { selectAllUsers, userAdded } from "../reducers/UserSlice.jsx";
+import {  userAdded } from "../reducers/UserSlice.jsx";
 import { PacManLoader } from "../loading/LoadingComponent.jsx";
 
 const Login = () => {
@@ -23,7 +23,6 @@ const Login = () => {
     theme: "dark",
   };
 
-  const users = useSelector(selectAllUsers);
   const { signInWithGoogle } = useAuth();
   const navigate = useNavigate();
   // *Google Sign In

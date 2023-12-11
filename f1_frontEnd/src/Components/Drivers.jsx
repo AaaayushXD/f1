@@ -150,7 +150,6 @@ export const PodiumWinners = () => {
       try {
         const driversRef = doc(db, "drivers", "driverDetails");
         const driversInfo = await getDoc(driversRef);
-        console.log(driversInfo);
         const driversDetails = driversInfo.data();
         const driverDetail = driversDetails?.driverDetail;
         if (driverDetail) {

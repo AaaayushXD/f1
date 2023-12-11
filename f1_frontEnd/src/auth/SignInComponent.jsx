@@ -101,10 +101,6 @@ export const LogInForm = () => {
 
         {/* Submit Button */}
         <div className="flex flex-col items-center justify-center w-full">
-          <Link to={"/forgot"} className="text-xs ">
-            Forgot Password? <span className="text-[#ff697d]">Click Here</span>
-          </Link>
-
           <button
             type="submit"
             className="w-[60%] h-[55px] bg-transparent border border-[#ff697d] my-3 py-2 px-3 rounded-xl hover:bg-[#ff697d] focus:bg-[#ff697d] font-bold"
@@ -127,6 +123,7 @@ export const SignUpForm = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  console.log;
   const { signUpWithEmail } = useAuth();
   const handlePasswordVisibility = () => {
     setShowPassword((prev) => !prev);

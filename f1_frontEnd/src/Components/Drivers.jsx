@@ -177,98 +177,196 @@ export const PodiumWinners = () => {
       ) : (
         <div>
           {firstPlace && secondPlace && thirdPlace && (
-            <div className="flex flex-wrap items-center justify-center w-full h-full gap-8 p-5 text-white ">
-              {/* 2nd place */}
-              <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500 cursor-pointer">
-                <div className="flex items-center justify-between px-2 py-3">
-                  <p className="text-4xl text-[#cfcfcf]">2nd</p>
-                  <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {secondPlace?.points}
-                    <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
-                      PTS
-                    </span>
-                  </p>
-                </div>
-                <div className="border border-[#525252] mb-3"></div>
+            <div>
+              <div className="flex-wrap items-center justify-center hidden w-full h-full gap-8 p-5 text-white md:flex ">
+                {/* 2nd place */}
+                <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500 cursor-pointer">
+                  <div className="flex items-center justify-between px-2 py-3">
+                    <p className="text-4xl text-[#cfcfcf]">2nd</p>
+                    <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
+                      {secondPlace?.points}
+                      <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
+                        PTS
+                      </span>
+                    </p>
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
 
-                <div className="flex items-center justify-center">
-                  <img
-                    src={secondPlace.driverImage}
-                    alt={secondPlace.driverName}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="border border-[#525252] mb-3"></div>
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={secondPlace.driverImage}
+                      alt={secondPlace.driverName}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
 
-                <div className="flex items-center justify-center gap-2 p-2 mb-2">
-                  <p className="text-lg ">
-                    {secondPlace.driverName.split(" ")[0]}
-                  </p>
-                  <p className="text-3xl font-bold">
-                    {secondPlace.driverName.split(" ")[1]}
-                  </p>
+                  <div className="flex items-center justify-center gap-2 p-2 mb-2">
+                    <p className="text-lg ">
+                      {secondPlace.driverName.split(" ")[0]}
+                    </p>
+                    <p className="text-3xl font-bold">
+                      {secondPlace.driverName.split(" ")[1]}
+                    </p>
+                  </div>
+                </div>
+                {/* 1st Place */}
+                <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500 cursor-pointer">
+                  <div className="flex items-center justify-between px-2 py-3">
+                    <p className="text-4xl text-[#ff697d]">1st</p>
+                    <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
+                      {firstPlace?.points}
+                      <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
+                        PTS
+                      </span>
+                    </p>
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
+
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={firstPlace.driverImage}
+                      alt={firstPlace.driverName}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
+
+                  <div className="flex items-center justify-center gap-2 p-2 mb-2">
+                    <p className="text-lg ">
+                      {firstPlace.driverName.split(" ")[0]}
+                    </p>
+                    <p className="text-3xl font-bold">
+                      {firstPlace.driverName.split(" ")[1]}
+                    </p>
+                  </div>
+                </div>
+                {/* 3rd place */}
+                <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500  cursor-pointer">
+                  <div className="flex items-center justify-between px-2 py-3">
+                    <p className="text-4xl text-[#9b6229]">3rd</p>
+                    <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
+                      {thirdPlace?.points}
+                      <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
+                        PTS
+                      </span>
+                    </p>
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
+
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={thirdPlace.driverImage}
+                      alt={thirdPlace.driverName}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
+
+                  <div className="flex items-center justify-center gap-2 p-2 mb-2">
+                    <p className="text-lg ">
+                      {thirdPlace.driverName.split(" ")[0]}
+                    </p>
+                    <p className="text-3xl font-bold">
+                      {thirdPlace.driverName.split(" ")[1]}
+                    </p>
+                  </div>
                 </div>
               </div>
-              {/* 1st Place */}
-              <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500 cursor-pointer">
-                <div className="flex items-center justify-between px-2 py-3">
-                  <p className="text-4xl text-[#ff697d]">1st</p>
-                  <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {firstPlace?.points}
-                    <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
-                      PTS
-                    </span>
-                  </p>
-                </div>
-                <div className="border border-[#525252] mb-3"></div>
+              <div className="flex flex-wrap items-center justify-center w-full h-full gap-8 p-5 text-white md:hidden ">
+                {/* 1st Place */}
+                <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500 cursor-pointer">
+                  <div className="flex items-center justify-between px-2 py-3">
+                    <p className="text-4xl text-[#ff697d]">1st</p>
+                    <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
+                      {firstPlace?.points}
+                      <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
+                        PTS
+                      </span>
+                    </p>
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
 
-                <div className="flex items-center justify-center">
-                  <img
-                    src={firstPlace.driverImage}
-                    alt={firstPlace.driverName}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="border border-[#525252] mb-3"></div>
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={firstPlace.driverImage}
+                      alt={firstPlace.driverName}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
 
-                <div className="flex items-center justify-center gap-2 p-2 mb-2">
-                  <p className="text-lg ">
-                    {firstPlace.driverName.split(" ")[0]}
-                  </p>
-                  <p className="text-3xl font-bold">
-                    {firstPlace.driverName.split(" ")[1]}
-                  </p>
+                  <div className="flex items-center justify-center gap-2 p-2 mb-2">
+                    <p className="text-lg ">
+                      {firstPlace.driverName.split(" ")[0]}
+                    </p>
+                    <p className="text-3xl font-bold">
+                      {firstPlace.driverName.split(" ")[1]}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              {/* 3rd place */}
-              <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500  cursor-pointer">
-                <div className="flex items-center justify-between px-2 py-3">
-                  <p className="text-4xl text-[#9b6229]">3rd</p>
-                  <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
-                    {thirdPlace?.points}
-                    <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
-                      PTS
-                    </span>
-                  </p>
-                </div>
-                <div className="border border-[#525252] mb-3"></div>
+                {/* 2nd place */}
+                <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500 cursor-pointer">
+                  <div className="flex items-center justify-between px-2 py-3">
+                    <p className="text-4xl text-[#cfcfcf]">2nd</p>
+                    <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
+                      {secondPlace?.points}
+                      <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
+                        PTS
+                      </span>
+                    </p>
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
 
-                <div className="flex items-center justify-center">
-                  <img
-                    src={thirdPlace.driverImage}
-                    alt={thirdPlace.driverName}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="border border-[#525252] mb-3"></div>
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={secondPlace.driverImage}
+                      alt={secondPlace.driverName}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
 
-                <div className="flex items-center justify-center gap-2 p-2 mb-2">
-                  <p className="text-lg ">
-                    {thirdPlace.driverName.split(" ")[0]}
-                  </p>
-                  <p className="text-3xl font-bold">
-                    {thirdPlace.driverName.split(" ")[1]}
-                  </p>
+                  <div className="flex items-center justify-center gap-2 p-2 mb-2">
+                    <p className="text-lg ">
+                      {secondPlace.driverName.split(" ")[0]}
+                    </p>
+                    <p className="text-3xl font-bold">
+                      {secondPlace.driverName.split(" ")[1]}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3rd place */}
+                <div className=" p-4 border-t border-r rounded-2xl hover:border-[#39b2ad] hover:border-t-2 hover:scale-105 transition-all duration-500  cursor-pointer">
+                  <div className="flex items-center justify-between px-2 py-3">
+                    <p className="text-4xl text-[#9b6229]">3rd</p>
+                    <p className="flex flex-col text-4xl font-bold lg:text-4xl max-w-[70px] text-center">
+                      {thirdPlace?.points}
+                      <span className="text-xl font-extrabold mt-1 bg-[#cfcfcf] text-[#242424] rounded-2xl">
+                        PTS
+                      </span>
+                    </p>
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
+
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={thirdPlace.driverImage}
+                      alt={thirdPlace.driverName}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="border border-[#525252] mb-3"></div>
+
+                  <div className="flex items-center justify-center gap-2 p-2 mb-2">
+                    <p className="text-lg ">
+                      {thirdPlace.driverName.split(" ")[0]}
+                    </p>
+                    <p className="text-3xl font-bold">
+                      {thirdPlace.driverName.split(" ")[1]}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

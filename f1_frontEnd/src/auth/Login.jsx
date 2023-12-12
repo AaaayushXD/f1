@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import GOOGLE from "../assets/social_icons/google.png";
-import FACEBOOK from "../assets/social_icons/facebook.png";
+import GITHUB from "../assets/social_icons/github.png";
 import SignInComponent, { LogInForm, LogInImage } from "./SignInComponent";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../firebase/Auth.jsx";
 import { useNavigate } from "react-router-dom";
-import {  userAdded } from "../reducers/UserSlice.jsx";
+import { userAdded } from "../reducers/UserSlice.jsx";
 import { PacManLoader } from "../loading/LoadingComponent.jsx";
 
 const Login = () => {
@@ -23,7 +23,7 @@ const Login = () => {
     theme: "dark",
   };
 
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, signInWithGithub } = useAuth();
   const navigate = useNavigate();
   // *Google Sign In
   const googleSignIn = async () => {
@@ -37,8 +37,17 @@ const Login = () => {
     }
   };
 
-  // TODO: Facebook Sign IN
-  const facebookSignIn = () => {};
+  //*: Github Sign IN
+  const gitHubSignIn = async () => {
+    try {
+      const user = await signInWithGithub();
+      dispatch(userAdded(user));
+      navigate("/");
+    } catch (e) {
+      toast.error("Login Failed", toastStyle);
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -89,11 +98,11 @@ const Login = () => {
 
                 <div
                   className="flex items-center justify-between bg-blue-600 rounded-full w-[250px] cursor-pointer hover:bg-blue-700"
-                  onClick={facebookSignIn}
+                  onClick={gitHubSignIn}
                 >
                   <SignInComponent
-                    message="SignIn with Facebook"
-                    image={FACEBOOK}
+                    message="SignIn with GitHub"
+                    image={GITHUB}
                   />
                 </div>
               </div>

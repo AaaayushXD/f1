@@ -54,7 +54,7 @@ const Profile = () => {
                     <img
                       src={user.photoURL}
                       alt={userName}
-                      className="rounded-full"
+                      className="rounded-full max-h-[100px]"
                     />
                   ) : (
                     <div className="h-[60px] mb-4">

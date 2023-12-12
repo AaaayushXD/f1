@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GOOGLE from "../assets/social_icons/google.png";
-import FACEBOOK from "../assets/social_icons/facebook.png";
+import GITHUB from "../assets/social_icons/github.png";
 import SignInComponent, { LogInImage, SignUpForm } from "./SignInComponent";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -24,7 +24,7 @@ const Register = () => {
   };
   const navigate = useNavigate();
 
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, signInWithGithub } = useAuth();
   // *Google Sign In
   const googleSignIn = async () => {
     try {
@@ -37,8 +37,17 @@ const Register = () => {
     }
   };
 
-  // TODO: Facebook Sign IN
-  const facebookSignIn = () => {};
+  //*: GIthub Sign IN
+  const githubSignIn = async () => {
+    try {
+      const user = await signInWithGithub();
+      dispatch(userAdded(user));
+      navigate("/");
+    } catch (e) {
+      toast.error("Login Failed", toastStyle);
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -89,11 +98,11 @@ const Register = () => {
 
                 <div
                   className="flex items-center justify-between bg-blue-600 rounded-full w-[250px] cursor-pointer hover:bg-blue-700"
-                  onClick={facebookSignIn}
+                  onClick={githubSignIn}
                 >
                   <SignInComponent
-                    message="SignUp with Facebook"
-                    image={FACEBOOK}
+                    message="SignUp with GitHub"
+                    image={GITHUB}
                   />
                 </div>
               </div>

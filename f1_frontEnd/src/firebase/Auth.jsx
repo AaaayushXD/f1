@@ -5,8 +5,10 @@ import {
   signInWithPopup,
   signOut,
   deleteUser,
+  linkWithCredential,
+  signInWithCredential,
 } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
 
@@ -27,6 +29,11 @@ export function AuthProvider({ children }) {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(auth, provider);
   };
+
+  const signInWithGithub = async () => {
+    const provider = new GithubAuthProvider();
+    return await signInWithPopup(auth, provider);
+  };
   const logOut = () => {
     return signOut(auth);
   };
@@ -46,6 +53,7 @@ export function AuthProvider({ children }) {
     signUpWithEmail,
     loginWithEmail,
     signInWithGoogle,
+    signInWithGithub,
     logOut,
     removeAcc,
   };

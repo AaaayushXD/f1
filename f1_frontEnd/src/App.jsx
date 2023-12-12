@@ -18,7 +18,7 @@ import Circuits from "./Components/Circuits.jsx";
 import TermsAndConditions from "./legal/TermsAndConditions.jsx";
 import Policy from "./legal/Policy.jsx";
 import Champions from "./Components/Champions.jsx";
-import Profile, { ProfileSection } from "./Components/Profile.jsx";
+import { ProfileSection } from "./Components/Profile.jsx";
 
 function App() {
   return (

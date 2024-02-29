@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 import { Facebook, Github, Linkedin, Twitter } from "lucide-react";
 
 const Footer = () => {
+  const date = new Date();
   return (
     <div className="w-full h-full bg-[#3d3d3d]">
       {/* logo */}
       <div className="flex gap-5 px-4 py-3 mb-6 md:mb-3">
-        <a href="https://portfoliosite-aayush.netlify.app/" target="_blank">
+        <a
+          href="https://portfoliosite-aayush.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <img src={LAMA} alt="aayush logo" className="h-[60px]" />
         </a>
         <div className="border border-[#5e5f5e]"></div>
@@ -40,6 +45,7 @@ const Footer = () => {
           <a
             target="_blank"
             href="https://www.facebook.com/Aayush.914/"
+            rel="noreferrer"
             className="flex gap-2 text-[#a3a3a3] mb-4 hover:underline px-1 ]"
           >
             <Facebook />
@@ -47,6 +53,7 @@ const Footer = () => {
           </a>
           <a
             href="https://www.linkedin.com/in/aayush15l/"
+            rel="noreferrer"
             target="_blank"
             className="flex gap-2 text-[#a3a3a3] mb-4 hover:underline px-1 ]"
           >
@@ -55,6 +62,7 @@ const Footer = () => {
           </a>
           <a
             href="https://x.com/Aayush15l"
+            rel="noreferrer"
             target="_blank"
             className="flex gap-2 text-[#a3a3a3] mb-4 hover:underline px-1 ]"
           >
@@ -82,9 +90,10 @@ const Footer = () => {
       <div className="flex flex-col justify-between gap-3 px-4 pb-[80px] md:pb-5 sm:flex-row">
         <div className="px-3 py-2">
           <p className="flex gap-1 text-[#a3a3a3]">
-            © 2023{" "}
+            Copyright© {date.getFullYear()}{" "}
             <a
               href="https://portfoliosite-aayush.netlify.app/"
+              rel="noreferrer"
               target="_blank"
               className="hover:text-[#39b2ad] hover:underline"
             >
@@ -97,12 +106,14 @@ const Footer = () => {
           <a
             target="_blank"
             href="https://www.facebook.com/Aayush.914/"
+            rel="noreferrer"
             className="hover:text-[#fefefe]"
           >
             <Facebook />
           </a>
           <a
             href="https://www.linkedin.com/in/aayush15l/"
+            rel="noreferrer"
             target="_blank"
             className="hover:text-[#fefefe]"
           >
@@ -112,6 +123,7 @@ const Footer = () => {
             href="https://x.com/Aayush15l"
             target="_blank"
             className="hover:text-[#fefefe]"
+            rel="noreferrer"
           >
             <Twitter />
           </a>
@@ -119,6 +131,7 @@ const Footer = () => {
             href="https://github.com/AaaayushXD"
             target="_blank"
             className="hover:text-[#fefefe]"
+            rel="noreferrer"
           >
             <Github />
           </a>

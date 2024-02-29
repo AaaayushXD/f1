@@ -92,7 +92,7 @@ const Footer = () => {
           <p className="flex gap-1 text-[#a3a3a3]">
             Copyright© {date.getFullYear()}{" "}
             <a
-              href="https://portfoliosite-aayush.netlify.app/"
+              href="https://aayush-al.web.app/"
               rel="noreferrer"
               target="_blank"
               className="hover:text-[#39b2ad] hover:underline"
